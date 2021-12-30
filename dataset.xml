@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='utf-8'?>
+<?xml-stylesheet type="text/xsl" href="./Unknown.xslt" ?>
+<rdf:RDF xmlns:dc='http://purl.org/dc/terms/' xmlns:dcat='http://www.w3.org/ns/dcat#' xmlns:fdp='http://rdf.biosemantics.org/ontologies/fdp-o#' xmlns:foaf='http://xmlns.com/foaf/0.1/' xmlns:ldp='http://www.w3.org/ns/ldp#' xmlns:ns0='http://www.w3.org/2006/vcard/ns#' xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' xmlns:rdfs='http://www.w3.org/2000/01/rdf-schema#' xmlns:sio='http://semanticscience.org/resource/' xmlns:spar='http://purl.org/spar/datacite/'>
+    <ldp:DirectContainer rdf:about='https://w3id.org/duchenne-fdp/distribution/'>
+        <dc:title>Distributions</dc:title>
+        <ldp:contains rdf:resource='https://w3id.org/duchenne-fdp/distribution/d959bbdd-7e20-453a-b8ad-0d1897bdb287' />
+        <ldp:hasMemberRelation rdf:resource='http://www.w3.org/ns/dcat#distribution' />
+        <ldp:membershipResource>
+            <dcat:Dataset rdf:about='https://w3id.org/duchenne-fdp/dataset/63141d1c-34e5-4c50-84ef-f1b33724a838'>
+                <rdf:type rdf:resource='http://www.w3.org/ns/dcat#Resource'></rdf:type>
+                <rdfs:label>Distributions</rdfs:label>
+                <dc:title>Duchenne Data Platform</dc:title>
+                <dc:accessRights>
+                    <dc:RightsStatement rdf:about='https://w3id.org/duchenne-fdp/dataset/63141d1c-34e5-4c50-84ef-f1b33724a838#accessRights'>
+                        <dc:description>This metadata file has no restrictions</dc:description>
+                    </dc:RightsStatement>
+                </dc:accessRights>
+                <dc:conformsTo>
+                    <rdf:Description rdf:about='https://w3id.org/duchenne-fdp/profile/2f08228e-1789-40f8-84cd-28e3288c3604'>
+                        <rdfs:label>Dataset Profile</rdfs:label>
+                    </rdf:Description>
+                </dc:conformsTo>
+                <dc:creator>
+                    <foaf:Person rdf:about='https://orcid.org/0000-0003-2160-9395'>
+                        <rdfs:label xml:lang='en'>https://w3id.org/duchenne-fdp/dataset/d877ac76-87ba-461f-803b-3a8a90a2e965#contact</rdfs:label>
+                    </foaf:Person>
+                </dc:creator>
+                <dc:description>The Duchenne Data Platform (DDP) is a patient-led registry. Patients are the owners of their data and have their own ‘data lockers’ where they can not only collect their Patient Reported Outcomes (PROs) but can also upload their data from other sources such as hospitals and wearables.</dc:description>
+                <dc:hasVersion>0.0.1</dc:hasVersion>
+                <dc:identifier>https://w3id.org/duchenne-fdp/dataset/63141d1c-34e5-4c50-84ef-f1b33724a838</dc:identifier>
+                <dc:isPartOf rdf:resource='https://w3id.org/duchenne-fdp/catalog/c7a52cda-7980-42f8-9aaa-08fb5b1855ae' />
+                <dc:issued rdf:datatype='http://www.w3.org/2001/XMLSchema#dateTime'>2021-12-09T07:11:59.385</dc:issued>
+                <dc:language>
+                    <dc:LinguisticSystem rdf:about='http://id.loc.gov/vocabulary/iso639-1/en'></dc:LinguisticSystem>
+                </dc:language>
+                <dc:license rdf:resource='https://raw.githubusercontent.com/creativecommons/cc.licenserdf/master/cc/licenserdf/licenses/creativecommons.org_publicdomain_zero_1.0_.rdf' />
+                <dc:modified rdf:datatype='http://www.w3.org/2001/XMLSchema#dateTime'>2021-12-27T07:41:43</dc:modified>
+                <dc:publisher>
+                    <foaf:Agent rdf:nodeID='g482780'>
+                        <foaf:name>Mark D Wilkinson</foaf:name>
+                    </foaf:Agent>
+                </dc:publisher>
+                <dc:rights rdf:resource='https://en.wikipedia.org/wiki/All_rights_reserved' />
+                <fdp:metadataIdentifier>
+                    <spar:Identifier rdf:about='https://w3id.org/duchenne-fdp/dataset/63141d1c-34e5-4c50-84ef-f1b33724a838#identifier'>
+                        <dc:identifier>https://w3id.org/duchenne-fdp/dataset/63141d1c-34e5-4c50-84ef-f1b33724a838</dc:identifier>
+                    </spar:Identifier>
+                </fdp:metadataIdentifier>
+                <fdp:metadataIssued rdf:datatype='http://www.w3.org/2001/XMLSchema#dateTime'>2021-12-09T12:12:01.405703818Z</fdp:metadataIssued>
+                <fdp:metadataModified rdf:datatype='http://www.w3.org/2001/XMLSchema#dateTime'>2021-12-27T07:41:44.486327194Z</fdp:metadataModified>
+                <sio:SIO_000628>
+                    <rdf:Description rdf:about='https://w3id.org/duchenne-fdp/dataset/63141d1c-34e5-4c50-84ef-f1b33724a838/metrics/445c0a70d1e214e545b261559e2842f4'>
+                        <sio:SIO_000332 rdf:resource='https://www.ietf.org/rfc/rfc3986.txt' />
+                        <sio:SIO_000628 rdf:resource='https://www.ietf.org/rfc/rfc3986.txt' />
+                    </rdf:Description>
+                </sio:SIO_000628>
+                <sio:SIO_000628>
+                    <rdf:Description rdf:about='https://w3id.org/duchenne-fdp/dataset/63141d1c-34e5-4c50-84ef-f1b33724a838/metrics/5d27e854a9e78eb3f663331cd47cdc13'>
+                        <sio:SIO_000332 rdf:resource='https://www.wikidata.org/wiki/Q8777' />
+                        <sio:SIO_000628 rdf:resource='https://www.wikidata.org/wiki/Q8777' />
+                    </rdf:Description>
+                </sio:SIO_000628>
+                <dcat:contactPoint>
+                    <ns0:Individual rdf:about='https://w3id.org/duchenne-fdp/dataset/63141d1c-34e5-4c50-84ef-f1b33724a838#contact'>
+                        <ns0:fn xml:lang='en'>https://w3id.org/duchenne-fdp/dataset/d877ac76-87ba-461f-803b-3a8a90a2e965#contact</ns0:fn>
+                        <ns0:hasEmail rdf:resource='mailto:info@duchenne.nl' />
+                    </ns0:Individual>
+                </dcat:contactPoint>
+                <dcat:distribution rdf:resource='https://w3id.org/duchenne-fdp/distribution/d959bbdd-7e20-453a-b8ad-0d1897bdb287' />
+                <dcat:keyword xml:lang='en'>Clinical data</dcat:keyword>
+                <dcat:keyword xml:lang='en'>Becker Muscular Dystrophy</dcat:keyword>
+                <dcat:keyword xml:lang='en'>Duchenne Muscular Dystrophy</dcat:keyword>
+                <dcat:keyword xml:lang='en'>Genetic data</dcat:keyword>
+                <dcat:keyword xml:lang='en'>PROMs</dcat:keyword>
+                <dcat:keyword xml:lang='en'>PROs</dcat:keyword>
+                <dcat:landingPage rdf:resource='https://duchenne.nl' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0011675' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C13306' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0008981' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C141687' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/UBERON_0001434' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0009473' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0002014' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C20993' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0000750' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C132531' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0001344' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/PATO_0001421' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0006957' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C49887' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0003044' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0002987' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0003270' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0001639' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0002650' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0005997' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0000819' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0001263' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C125410' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0002617' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C131922' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C93300' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0000708' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C25656' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0002020' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0000939' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0001249' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0002090' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0003674' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0003458' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0002315' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C94321' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0010891' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0000501' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0003457' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C70810' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C141702' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0002539' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0100543' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C156420' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C28421' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C16576' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0010819' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0001256' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0002317' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C50184' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0033454' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C68615' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0020110' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C132555' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C13359' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0001324' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C25711' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0001376' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0003707' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C102559' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C138901' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C176742' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0004349' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0000518' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0005133' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0001252' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C141706' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0002376' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0003560' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0001635' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C94198' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0001667' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C16457' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C141689' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0002527' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0006380' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C115789' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C25271' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0003202' />
+                <dcat:theme rdf:resource='http://semanticscience.org/resource/attribute' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0003713' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0002019' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C136154' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C50276' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C15222' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0006785' />
+                <dcat:theme rdf:resource='http://semanticscience.org/resource/SIO_010056' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C62103' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0030193' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0002791' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C15383' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C101668' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0003307' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0001644' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C20197' />
+                <dcat:theme rdf:resource='http://semanticscience.org/resource/end-date' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0003325' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0001638' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C122920' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0003198' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0002878' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0002515' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0001288' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C25597' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0001250' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0002133' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0008366' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C156186' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0033333' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C171133' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C130965' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0003391' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0003236' />
+                <dcat:theme rdf:resource='http://semanticscience.org/resource/start-date' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0003100' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C115805' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/NCIT_C21072' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0001265' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0001714' />
+                <dcat:theme rdf:resource='http://purl.obolibrary.org/obo/HP_0001371' />
+                <foaf:homepage rdf:resource='https://duchenne.nl' />
+            </dcat:Dataset>
+        </ldp:membershipResource>
+    </ldp:DirectContainer>
+</rdf:RDF>
