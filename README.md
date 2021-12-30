@@ -24,6 +24,7 @@ then `docker-compose up` and surf to http://localhost:4567
 * you must have bundler gem installed
 
 `bundle install`
+
 `ruby proxy.rb`
 
 then surf to http://localhost:4567
