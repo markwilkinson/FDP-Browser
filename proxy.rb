@@ -35,7 +35,7 @@ def getit()
   queryable = RDF::Repository.new
   reader.each_statement {|s| queryable << s}
   
-  query = %(
+  query_dcat = %(
     PREFIX dcterms: <http://purl.org/dc/terms/>
     PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     PREFIX ldp: <http://www.w3.org/ns/ldp#>
@@ -46,19 +46,45 @@ def getit()
     }
     )
   
-#  $stderr.puts "\n\nXSLTs:  #{xslts}\n\n"
-  query = SPARQL.parse(query)
+  query_resource = %(
+    PREFIX dcterms: <http://purl.org/dc/terms/>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    PREFIX ldp: <http://www.w3.org/ns/ldp#>
+    PREFIX dcat: <http://www.w3.org/ns/dcat#>
+    SELECT ?member ?type
+    WHERE {
+      ?s a dcat:Resource .
+      ?s a ?type
+    }
+    )
+  
+    #  $stderr.puts "\n\nXSLTs:  #{xslts}\n\n"
+  query_dcat = SPARQL.parse(query_dcat)
+  query_resource = SPARQL.parse(query_resource)
+  
   type = "Unknown"
-  queryable.query(query) do |result|
-    thistype = result[:type].to_s
-#    $stderr.puts "Type Found #{thistype}"
-    next unless xslts.keys.include?(thistype)
-    type=thistype
-#    $stderr.puts "Type Set #{type}"
+
+  results_dcat = queryable.query(query_dcat)
+  results_resource = queryable.query(query_resource)
+  if results_dcat.first
+    results_dcat.each do |result|
+      thistype = result[:type].to_s
+      next unless xslts.keys.include?(thistype)
+      type=thistype
+    end
+    xslt = xslts[type]
+  elsif results_resource.first
+    results_resource.each do |result|
+      thistype = result[:type].to_s
+      next unless xslts.keys.include?(thistype)
+      type=thistype
+    end
+    xslt = xslts[type]
+  else
+    xslt = xslts[type] # Unknown
   end
-#  $stderr.puts "Type Final #{type}"
-  xslt = xslts[type]
-#  $stderr.puts "XSLT Final #{xslt}"
+
+
 
 
   @xmldata = RDF::Writer.for(:rdfxml).buffer do |w|

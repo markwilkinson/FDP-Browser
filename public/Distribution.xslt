@@ -14,8 +14,8 @@ xmlns:str="http://exslt.org/strings"
 xmlns:regexp="http://exslt.org/regular-expressions"
  version="2.0">
     <xsl:output method="html" encoding="utf-8" indent="yes" />
-    <xsl:variable name="docroot" select="//ldp:DirectContainer/ldp:membershipResource/*/@rdf:about" />
-    <xsl:variable name="title" select="//ldp:DirectContainer/ldp:membershipResource/*/dc:title/." />
+    <xsl:variable name="docroot" select="//dcat:Resource/@rdf:about" />
+    <xsl:variable name="title" select="//dcat:Resource/dc:title/." />
     <xsl:template match="/">
         <html>
         <head>
@@ -61,9 +61,9 @@ xmlns:regexp="http://exslt.org/regular-expressions"
 
                                 <div class="yui-u">
                                     <p class="enlarge">
-                                        <xsl:for-each select="//ldp:DirectContainer/ldp:contains">
-                                            <xsl:variable name="content" select="./@rdf:resource"/>
-                                            <a href='./proxy?url={$content}'><xsl:value-of select="regexp:replace($content, '^.*\/', 'i', '')"/></a>
+                                        <xsl:for-each select="//dcat:Resource/dc:description">
+                                            <xsl:variable name="content" select="."/>
+                                            <xsl:value-of select="$content"/>
                                         </xsl:for-each>
                                     </p>
                                 </div> <!-- yui-u -->
@@ -80,7 +80,7 @@ xmlns:regexp="http://exslt.org/regular-expressions"
 
                                 <div class="yui-u">
                                     <p class="enlarge">
-                                        <xsl:for-each select="//ldp:DirectContainer/ldp:membershipResource/*/dc:isPartOf">
+                                        <xsl:for-each select="//dcat:Resource/dc:isPartOf">
                                                 <xsl:variable name="content" select="./@rdf:resource"/>
                                                 <a href='./proxy?url={$content}'><xsl:value-of select="$content"/></a>
                                         </xsl:for-each>
@@ -101,7 +101,7 @@ xmlns:regexp="http://exslt.org/regular-expressions"
                                 <div class="yui-u">
 <!--                                    <p class="enlarge"> -->
 
-                                        <xsl:for-each select="//ldp:membershipResource/*/node()">
+                                        <xsl:for-each select="//dcat:Resource/node()">
                                             <xsl:variable name="restrictednode" select="local-name()"/>
                                             <xsl:choose>
                                                 <xsl:when test='not($restrictednode = "contains" or  $restrictednode = "catalog" or $restrictednode = "dataset" or $restrictednode = "distribution")'>
