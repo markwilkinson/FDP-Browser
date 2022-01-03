@@ -11,7 +11,7 @@ version: "3"
 services:
 
   fdp-browser:
-    image: markw/fdp-browser:0.0.1
+    image: markw/fdp-browser:latest
     restart: always
     hostname: fdp-browser
     ports:
