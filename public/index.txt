@@ -1,0 +1,4 @@
+http://www.w3.org/ns/dcat#Distribution, ./Distribution.xslt
+http://www.w3.org/ns/dcat#Dataset, ./Dataset.xslt
+http://www.w3.org/ns/dcat#Catalog, ./Catalog.xslt
+Unknown, http://localhost:4567/Unknown.xslt

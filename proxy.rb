@@ -30,8 +30,6 @@ def getit()
   
   io = StringIO.new(rdf)
 
-#  reader = RDF::Reader.for(:turtle).new(io, validate: true)
-#  $stderr.puts "\n\nVALID?? #{reader.valid?}\n\n"
   reader = RDF::Reader.for(:turtle).new(io)
 
   queryable = RDF::Repository.new
@@ -40,25 +38,29 @@ def getit()
   query = %(
     PREFIX dcterms: <http://purl.org/dc/terms/>
     PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    SELECT ?type
+    PREFIX ldp: <http://www.w3.org/ns/ldp#>
+    SELECT ?member ?type
     WHERE {
-    <#{url}> a ?type}
+      ?s ldp:membershipResource ?member .
+      ?member a ?type
+    }
     )
   
-  $stderr.puts "\n\nTHE QUERY IS " + query + "\n\n"
-
+#  $stderr.puts "\n\nXSLTs:  #{xslts}\n\n"
   query = SPARQL.parse(query)
   type = "Unknown"
   queryable.query(query) do |result|
-    thistype = result[:type]
-    next unless xslts.include?(thistype)
+    thistype = result[:type].to_s
+#    $stderr.puts "Type Found #{thistype}"
+    next unless xslts.keys.include?(thistype)
     type=thistype
+#    $stderr.puts "Type Set #{type}"
   end
-  type = "Unknown"
-      
+#  $stderr.puts "Type Final #{type}"
+  xslt = xslts[type]
+#  $stderr.puts "XSLT Final #{xslt}"
 
-#  xslt = "http://fairdata.systems/miscellaneous/xslts/#{type}.xslt"
-   xslt = "./#{type}.xslt"
+
   @xmldata = RDF::Writer.for(:rdfxml).buffer do |w|
    w.prefix(:foaf, RDF::URI.new("http://xmlns.com/foaf/0.1/"))
    w.prefix(:dc, RDF::URI.new("http://purl.org/dc/terms/"))
@@ -78,18 +80,22 @@ end
   @xmldata.gsub!(/^(\<\?xml[^>]+\>)/, '\1
 <?xml-stylesheet type="text/xsl" href="|||PUT_XSLT_HERE|||" ?>
 
+
 ')
   @xmldata.gsub!(/\|\|\|PUT_XSLT_HERE\|\|\|/, xslt)
   
-  $stderr.puts @xmldata
+  #$stderr.puts @xmldata
 
   
     
 end
 
 def get_xslts
-  res = RestClient.get("http://fairdata.systems/miscellaneous/xslts/index.txt")
+  res = RestClient.get("http://localhost:4567/index.txt")
   list = res.body
-  members = list.split
-  return members    
+  members = list.split("\n")
+  typehash = Hash.new
+  $stderr.puts members
+  members.each {|m| type, xsl = m.split(","); $stderr.puts "type #{type} xsl #{xsl}"; type.strip!; xsl.strip!; typehash[type] = xsl}
+  return typehash
 end

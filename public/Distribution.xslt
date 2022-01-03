@@ -34,7 +34,7 @@ xmlns:regexp="http://exslt.org/regular-expressions"
                     <div class="yui-gc">
                         <div class="yui-u first">
 
-                        <h1>Resource Type: Unknown  </h1>
+                        <h1>Resource Type: Distribution  </h1>
                         </div>
 
                         <div class="yui-u">
