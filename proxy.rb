@@ -98,6 +98,7 @@ def getit()
    w.prefix(:ldp, RDF::URI.new("http://www.w3.org/ns/ldp#"))
    w.prefix(:rdf, RDF::URI.new("http://www.w3.org/1999/02/22-rdf-syntax-ns#"))
    w.prefix(:rdfs, RDF::URI.new("http://www.w3.org/2000/01/rdf-schema#"))
+   w.prefix(:vcard, RDF::URI.new("http://www.w3.org/2006/vcard/ns#"))
 
     #queryable.each_statement {|s| w << s}
    w << queryable

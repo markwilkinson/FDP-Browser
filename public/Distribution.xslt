@@ -11,6 +11,7 @@ xmlns:spar='http://purl.org/spar/datacite/'
 xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
 xmlns:fn="http://www.w3.org/2005/xpath-functions"
 xmlns:str="http://exslt.org/strings"
+xmlns:vcard="http://www.w3.org/2006/vcard/ns#"
 xmlns:regexp="http://exslt.org/regular-expressions"
  version="2.0">
     <xsl:output method="html" encoding="utf-8" indent="yes" />
@@ -34,7 +35,7 @@ xmlns:regexp="http://exslt.org/regular-expressions"
                     <div class="yui-gc">
                         <div class="yui-u first">
 
-                        <h1>Resource Type: Distribution  </h1>
+                        <h2>Resource Type: Distribution  </h2>
                         </div>
 
                         <div class="yui-u">
@@ -60,7 +61,7 @@ xmlns:regexp="http://exslt.org/regular-expressions"
                                 </div> <!-- first -->
 
                                 <div class="yui-u">
-                                    <p class="enlarge">
+                                    <p style="font-size: 120%;">
                                         <xsl:for-each select="//dcat:Resource/dc:description">
                                             <xsl:variable name="content" select="."/>
                                             <xsl:value-of select="$content"/>
@@ -79,7 +80,7 @@ xmlns:regexp="http://exslt.org/regular-expressions"
                                 </div>
 
                                 <div class="yui-u">
-                                    <p class="enlarge">
+                                    <p style="font-size: 120%;">
                                         <xsl:for-each select="//dcat:Resource/dc:isPartOf">
                                                 <xsl:variable name="content" select="./@rdf:resource"/>
                                                 <a href='./proxy?url={$content}'><xsl:value-of select="$content"/></a>
@@ -104,7 +105,7 @@ xmlns:regexp="http://exslt.org/regular-expressions"
                                         <xsl:for-each select="//dcat:Resource/node()">
                                             <xsl:variable name="restrictednode" select="local-name()"/>
                                             <xsl:choose>
-                                                <xsl:when test='not($restrictednode = "contains" or  $restrictednode = "catalog" or $restrictednode = "dataset" or $restrictednode = "distribution")'>
+                                                <xsl:when test='not($restrictednode = "SIO_000628" or $restrictednode = "contactPoint" or $restrictednode = "accessService" or $restrictednode = "contains" or  $restrictednode = "catalog" or $restrictednode = "dataset" or $restrictednode = "distribution")'>
                                                     <xsl:if test = "(not(local-name()='' or local-name()='type'  or local-name()='label' or local-name()='title' or local-name()='isPartOf'))">
                                                         <xsl:variable name="url" select="./@rdf:resource"></xsl:variable>
                                                         <xsl:variable name="content" select="."></xsl:variable>
@@ -123,6 +124,9 @@ xmlns:regexp="http://exslt.org/regular-expressions"
 
                                                     </xsl:if>
                                                 </xsl:when>
+                                                <xsl:when test='$restrictednode = "accessService" or $restrictednode = "contactPoint"'>
+                                                    <xsl:apply-templates select="."/>
+                                                </xsl:when>
                                             </xsl:choose>
                                         </xsl:for-each>
 <!--                                    </p> -->
@@ -132,7 +136,7 @@ xmlns:regexp="http://exslt.org/regular-expressions"
 
 
                         <div id="ft">
-                            <br/><br/><br/><p>Created By : <a href="mailto:info@fairdata.systems">info@fairdata.systems</a> : (XXX) - XXX-XXXX</p>
+                            <br/><br/><br/><p>Rendering Created By : <a href="mailto:info@fairdata.systems">info@fairdata.systems</a></p>
                         </div><!--// footer -->
 
                     </div><!--// .yui-main -->
@@ -147,4 +151,31 @@ xmlns:regexp="http://exslt.org/regular-expressions"
         </body>
         </html>
     </xsl:template>
+    <xsl:template match="dcat:accessService">
+        <xsl:variable name="desc" select="//dcat:endpointDescription/@rdf:resource"></xsl:variable>
+        <xsl:variable name="loc" select="//dcat:endpointURL/@rdf:resource"></xsl:variable>
+       
+        <b>Access Service</b>
+        <div style="text-indent: 50px;">
+        <b>Description: </b><a href='{$desc}'>  <xsl:value-of select="regexp:replace($desc, '^.*\/', 'i', '')"/>  </a><br/>
+        </div>
+        <div style="text-indent: 50px;">
+        <b>URL: </b><a href='{$loc}'>            <xsl:value-of select="regexp:replace($loc, '^.*\/', 'i', '')"/>   </a>
+        </div>
+    </xsl:template>
+
+    <xsl:template match="dcat:contactPoint">
+        <xsl:variable name="name" select="//vcard:Individual/vcard:fn/node()"></xsl:variable>
+        <xsl:variable name="email" select="//vcard:Individual/vcard:hasEmail/@rdf:resource"></xsl:variable>
+       
+        <b>Contact Point</b>
+        <div style="text-indent: 50px;">
+            <b>Name: </b><xsl:value-of select="$name"/><br/>
+        </div>
+        <div style="text-indent: 50px;">
+            <b>Email: </b><a href='{$email}'>  <xsl:value-of select="$email"/>   </a>
+        </div>
+    </xsl:template>
+
+
 </xsl:stylesheet>
