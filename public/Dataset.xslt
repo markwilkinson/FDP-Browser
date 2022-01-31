@@ -16,13 +16,32 @@ xmlns:vcard="http://www.w3.org/2006/vcard/ns#"
 xmlns:regexp="http://exslt.org/regular-expressions"
  version="2.0">
     <xsl:output method="html" encoding="utf-8" indent="yes" />
-    <xsl:variable name="docroot" select="//ldp:DirectContainer/ldp:membershipResource/*/@rdf:about" />
-    <xsl:variable name="title" select="//ldp:DirectContainer/ldp:membershipResource/*/dc:title/." />
+    <xsl:variable name="distnode" select="//dcat:Distribution/@rdf:about"/>
+    <xsl:variable name="resnode" select="//dcat:Resource/@rdf:about"/>
+    <xsl:variable name="docroot">
+        <xsl:choose>
+            <xsl:when test='$distnode != ""'>                                       
+                <xsl:value-of select="'Distribution'"></xsl:value-of>
+            </xsl:when>
+            <xsl:when test='$resnode != ""'>
+                <xsl:value-of select="'Resource'"></xsl:value-of>
+            </xsl:when> 
+        
+        </xsl:choose>
+    </xsl:variable>
+
+    <xsl:variable name="title">
+       <xsl:value-of select="//*[local-name() = $docroot ]/*[local-name() = 'title']"/>
+    </xsl:variable>
+
+    <xsl:variable name="guid">
+       <xsl:value-of select="//*[local-name() = $docroot ]/@rdf:about"/>
+    </xsl:variable>
     <xsl:template match="/">
         <html>
         <head>
             <title>
-                <xsl:value-of select="concat($title, ' : ', $docroot)" />
+                <xsl:value-of select="concat($title, ' : ', $guid)" />
             </title>
             <link rel="stylesheet"  type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" media="all" /> 
             <link rel="stylesheet"  type="text/css" href="./css/resume.css" media="all" />
@@ -42,7 +61,7 @@ xmlns:regexp="http://exslt.org/regular-expressions"
                         <div class="yui-u">
                             <div class="contact-info">
 
-                        <h3><xsl:value-of select="concat($title, ' : ' , $docroot)" /></h3>
+                        <h3><xsl:value-of select="concat($title, ' : ' , $guid)" /></h3>
                             </div> <!-- contact info-->
                         </div> <!-- yui-u-->
                     </div> <!-- yui-gc-->
@@ -66,6 +85,7 @@ xmlns:regexp="http://exslt.org/regular-expressions"
                                         <xsl:for-each select="//ldp:DirectContainer/ldp:contains">
                                             <xsl:variable name="content" select="./@rdf:resource"/>
                                             <a href='./proxy?url={$content}'><xsl:value-of select="regexp:replace($content, '^.*\/', 'i', '')"/></a>
+                                            <br/>
                                         </xsl:for-each>
                                     </p>
                                 </div> <!-- yui-u -->

@@ -21,13 +21,19 @@ end
 def getit()
   xslts = get_xslts
   url = params[:url]
-  url.gsub!(/\.\w\w\w$/, "")
-  url.gsub!(/\/$/, "")
-  ttl = url + "/?format=ttl"
-  $stderr.puts "\n\nTHE URL IS " + ttl + "\n\n"
-  content = RestClient.get(ttl)
+  url.strip!
+  # url.gsub!(/\.\w\w\w$/, "")
+  # url.gsub!(/\/$/, "")
+  # ttl = url + "/?format=ttl"
+  #$stderr.puts "\n\nTHE URL IS " + ttl + "\n\n"
+#  content = RestClient.get(ttl)
+  content = RestClient::Request.execute(:method => :get, :url => url, :headers => {"Content-type" => "text/turtle"})
   rdf = content.body
-  
+  if rdf =~ /ldp\>/
+    rdf.gsub!('ldp>', 'ldp#>')  # fix castor's RDF :-)
+  end
+
+  #$stderr.puts rdf
   io = StringIO.new(rdf)
 
   reader = RDF::Reader.for(:turtle).new(io)
@@ -66,24 +72,26 @@ def getit()
 
   results_dcat = queryable.query(query_dcat)
   results_resource = queryable.query(query_resource)
+
+  $stderr.puts results_dcat.inspect
+  $stderr.puts results_resource.inspect
+  
   if results_dcat.first
     results_dcat.each do |result|
       thistype = result[:type].to_s
-      next unless xslts.keys.include?(thistype)
-      type=thistype
+      atype = thistype.gsub(/.*?[\#\/]/, "")
+      next unless xslts.include?(atype)
+      type=atype
     end
-    xslt = xslts[type]
   elsif results_resource.first
     results_resource.each do |result|
-      thistype = result[:type].to_s
-      next unless xslts.keys.include?(thistype)
-      type=thistype
+      thistype = result[:type].to_s  # this is a frozen string
+      atype =thistype.gsub(/.*?[\#\/]/, "")
+      next unless xslts.include?(atype)
+      type=atype
     end
-    xslt = xslts[type]
-  else
-    xslt = xslts[type] # Unknown
   end
-
+  xslt = type + ".xslt"
 
 
 
@@ -111,18 +119,13 @@ end
 ')
   @xmldata.gsub!(/\|\|\|PUT_XSLT_HERE\|\|\|/, xslt)
   
-  #$stderr.puts @xmldata
-
-  
+  $stderr.puts @xmldata
     
 end
 
 def get_xslts
-  res = RestClient.get("http://localhost:4567/index.txt")
-  list = res.body
-  members = list.split("\n")
-  typehash = Hash.new
-  $stderr.puts members
-  members.each {|m| type, xsl = m.split(","); $stderr.puts "type #{type} xsl #{xsl}"; type.strip!; xsl.strip!; typehash[type] = xsl}
-  return typehash
+  xslts = Dir.glob("./public/*.xslt")
+  xslts = xslts.map{|x| x.gsub!("./public/", ""); x.gsub!(".xslt", ""); x}
+#  $stderr.puts xslts
+  return xslts
 end

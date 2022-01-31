@@ -15,19 +15,40 @@ xmlns:vcard="http://www.w3.org/2006/vcard/ns#"
 xmlns:regexp="http://exslt.org/regular-expressions"
  version="2.0">
     <xsl:output method="html" encoding="utf-8" indent="yes" />
-    <xsl:variable name="docroot" select="//dcat:Resource/@rdf:about" />
-    <xsl:variable name="title" select="//dcat:Resource/dc:title/." />
     <xsl:template match="/">
+    <xsl:variable name="distnode" select="//dcat:Distribution/@rdf:about"/>
+    <xsl:variable name="resnode" select="//dcat:Resource/@rdf:about"/>
+    <xsl:variable name="docroot">
+        <xsl:choose>
+            <xsl:when test='$distnode != ""'>                                       
+                <xsl:value-of select="'Distribution'"></xsl:value-of>
+            </xsl:when>
+            <xsl:when test='$resnode != ""'>
+                <xsl:value-of select="'Resource'"></xsl:value-of>
+            </xsl:when> 
+        
+        </xsl:choose>
+    </xsl:variable>
+
+    <xsl:variable name="title">
+       <xsl:value-of select="//*[local-name() = $docroot ]/*[local-name() = 'title']"/>
+    </xsl:variable>
+
+    <xsl:variable name="guid">
+       <xsl:value-of select="//*[local-name() = $docroot ]/@rdf:about"/>
+    </xsl:variable>
+
         <html>
         <head>
             <title>
-                <xsl:value-of select="concat($title, ' : ', $docroot)" />
+                <xsl:value-of select="concat($title, ' : ', $guid)" />
             </title>
             <link rel="stylesheet"  type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" media="all" /> 
             <link rel="stylesheet"  type="text/css" href="./css/resume.css" media="all" />
 
         </head>
         <body>
+
         <div id="doc2" class="yui-t7">
             <div id="inner">
             
@@ -41,7 +62,7 @@ xmlns:regexp="http://exslt.org/regular-expressions"
                         <div class="yui-u">
                             <div class="contact-info">
 
-                        <h3><xsl:value-of select="concat($title, ' : ' , $docroot)" /></h3>
+                        <h3><xsl:value-of select="concat($title, ' : ' , $guid)" /></h3>
                             </div> <!-- contact info-->
                         </div> <!-- yui-u-->
                     </div> <!-- yui-gc-->
@@ -62,9 +83,9 @@ xmlns:regexp="http://exslt.org/regular-expressions"
 
                                 <div class="yui-u">
                                     <p style="font-size: 120%;">
-                                        <xsl:for-each select="//dcat:Resource/dc:description">
+                                        <xsl:for-each select="//*[local-name() = $docroot ]/dc:description">
                                             <xsl:variable name="content" select="."/>
-                                            <xsl:value-of select="$content"/>
+                                            <xsl:value-of select="$content"/><br/>
                                         </xsl:for-each>
                                     </p>
                                 </div> <!-- yui-u -->
@@ -81,7 +102,7 @@ xmlns:regexp="http://exslt.org/regular-expressions"
 
                                 <div class="yui-u">
                                     <p style="font-size: 120%;">
-                                        <xsl:for-each select="//dcat:Resource/dc:isPartOf">
+                                        <xsl:for-each select="//*[local-name() = $docroot ]/dc:isPartOf">
                                                 <xsl:variable name="content" select="./@rdf:resource"/>
                                                 <a href='./proxy?url={$content}'><xsl:value-of select="$content"/></a>
                                         </xsl:for-each>
@@ -102,7 +123,7 @@ xmlns:regexp="http://exslt.org/regular-expressions"
                                 <div class="yui-u">
 <!--                                    <p class="enlarge"> -->
 
-                                        <xsl:for-each select="//dcat:Resource/node()">
+                                        <xsl:for-each select="//*[local-name() = $docroot ]/node()">
                                             <xsl:variable name="restrictednode" select="local-name()"/>
                                             <xsl:choose>
                                                 <xsl:when test='not($restrictednode = "SIO_000628" or $restrictednode = "contactPoint" or $restrictednode = "accessService" or $restrictednode = "contains" or  $restrictednode = "catalog" or $restrictednode = "dataset" or $restrictednode = "distribution")'>

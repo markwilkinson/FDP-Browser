@@ -66,6 +66,7 @@ xmlns:regexp="http://exslt.org/regular-expressions"
                                         <xsl:for-each select="//ldp:DirectContainer/ldp:contains">
                                             <xsl:variable name="content" select="./@rdf:resource"/>
                                             <a href='./proxy?url={$content}'><xsl:value-of select="regexp:replace($content, '^.*\/', 'i', '')"/></a>
+                                            <br/>
                                         </xsl:for-each>
                                     </p>
                                 </div> <!-- yui-u -->
